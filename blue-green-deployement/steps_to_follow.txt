@@ -1,0 +1,24 @@
+# Clone the git repository
+git in <url>
+
+# Build the docker file
+docker build -f .
+
+# Push the image to docker hub using the below commands
+docker container commit --author "Navaneet" nknagaraj/python-app
+docker push nknagaraj/python-app
+
+# create a deployement:
+# To screate stable environment(blue)
+kubectl apply -f namespace.yaml
+kubectl apply -f docker-secret.yaml
+kubectl apply -f ./deployement/blue/deployementblue.yaml
+kubectl apply -f ./service/servicestable.yaml
+kubectl apply -f ingresscontrol.yaml
+
+# To create new version(green)
+kubectl apply -f ./deployement/blue/deployementgreen.yaml
+kubectl apply -f ./service/servicestage.yaml
+kubectl apply -f ingresscontolstage.yaml
+
+Once the build is stable contol the flow using version in service
