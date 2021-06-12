@@ -1,0 +1,14 @@
+# Clone the git repository
+git in <url>
+
+# Build the docker file
+docker build -f .
+
+# Push the image to docker hub using the below commands
+docker container commit --author "Navaneet" nknagaraj/nginx:1.16.1
+docker push nknagaraj/nginx:1.16.1
+
+# Create a deployement
+kubectl apply -f docker-secret.yaml
+kubectl apply -f nginx-depl.yaml
+kubectl apply -f nginx-service.yaml
