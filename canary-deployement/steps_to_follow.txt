@@ -1,0 +1,20 @@
+# Clone the git repository
+git in <url>
+
+# Build the docker file
+docker build -f .
+
+# Push the image to docker hub using the below commands
+docker container commit --author "Navaneet" nknagaraj/python-app
+docker push nknagaraj/python-app
+
+# create a deployement:
+kubectl apply -f namespace.yaml
+kubectl apply -f deployement1.yaml
+kubectl apply -f service.yaml
+kubectl apply -f ingress.yaml
+
+Add the second version of the deployement:
+kubectl apply -f deployement2.yaml
+
+Control the traffix using version in service
