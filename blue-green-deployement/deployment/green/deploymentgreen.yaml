@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app-green
+  namespace: python-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: python-app
+      version: green
+  template:
+    metadata:
+      labels:
+        app: python-app
+        version: green
+    spec:
+      imagePullSecrets:
+      - name: my-registry-key
+      containers:
+      - name: python-app
+        image: nknagaraj/python-app
+        ports:
+        - containerPort: 80

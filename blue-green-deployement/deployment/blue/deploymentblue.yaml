@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-app-blue
+  namespace: python-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: python-app
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: python-app
+        version: blue
+    spec:
+      imagePullSecrets:
+      - name: my-registry-key
+      containers:
+      - name: python-app
+        image: nknagaraj/python-app
+        ports:
+        - containerPort: 80

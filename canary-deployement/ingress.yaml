@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: python-ingress
+  namespace: canary-deployement
+spec:
+  rules:
+  - host: python-app.example.com 
+    http:
+      paths:
+        backend:
+          serviceName: python-app
+          servicePort: 80

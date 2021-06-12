@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: python-ingress-stable
+  namespace: python-app
+spec:
+  rules:
+  - host: python-app.example.com 
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: python-svc-stable
+          servicePort: 80

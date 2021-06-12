@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-app
+  labels:
+    name: python-app
+    # Control the traffix using the version
+    version: "v1"
+    # version: "v2"
+    namespace: canary-deployement
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: python-app
+    version: "v1"
+  type: LoadBalancer
